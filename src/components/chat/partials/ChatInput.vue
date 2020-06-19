@@ -10,6 +10,9 @@
     />
     <div 
       class="chat-input__send-btn"
+      :class="{
+        'chat-input__send-btn_disabled': textareaDisabled
+      }"
       @click="sendMessage"
     >
       <SendIcon />
@@ -29,9 +32,19 @@ export default {
   },
   data: () => ({
     textareaValue: '',
-    textareaRows: 1,
     textareaDisabled: false
   }),
+  methods: {
+    sendMessage: function(){
+      if (!this.textareaDisabled){
+        this.textareaDisabled = true;
+        window.setTimeout(() => {
+          console.log("Message sent!");
+          this.textareaDisabled = false;
+        }, 2000);
+      }
+    }
+  },
   computed: {
     lineCount: function() {
       return this.textareaValue.split(/\r\n|\r|\n/).length
@@ -66,5 +79,15 @@ export default {
 }
 .chat-input__send-btn:active{
   background-color: #499BFF;
+}
+.chat-input__send-btn_disabled{
+  background-color: #7D8790;
+  cursor: default;
+}
+.chat-input__send-btn_disabled:hover{
+  background-color: #7D8790;
+}
+.chat-input__send-btn_disabled:active{
+  background-color: #7D8790;
 }
 </style>
