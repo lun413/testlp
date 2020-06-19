@@ -27,9 +27,11 @@ export default {
 
 <style>
 .chat{
+	display: flex;
 	width: 100%;
 	max-width: 980px;
 	height: 719px;
 	max-height: 95vh;
+	box-shadow: black 0px 0px 30px -10px;
 }
 </style>

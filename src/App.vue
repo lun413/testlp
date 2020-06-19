@@ -18,7 +18,7 @@ export default {
 <style>
 @import "~normalize.css";
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: TT Norms, sans-serif, Avenir, Helvetica, Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
