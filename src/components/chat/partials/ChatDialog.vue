@@ -17,7 +17,7 @@
     <dialog-signature right />
   </div>
 </template>
-
+  
 <script>
 import DialogBubble from "./dialog/DialogBubble"
 import DialogSignature from "./dialog/DialogSignature"
