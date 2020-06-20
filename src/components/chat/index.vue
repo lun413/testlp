@@ -1,6 +1,6 @@
 <template>
 	<div class="chat">
-		<chat-list :list="list" />
+		<chat-list />
 		<chat-conversation />
 	</div>
 </template>
@@ -19,8 +19,8 @@ export default {
 		"chat-conversation": ChatConversation
 	}, 
 	
-	mounted: function() {
-		this.list = [1,2,3,4,5,6,7,8,9]
+	beforeCreate: function() {
+		this.$store.dispatch("initChat");
 	},
 }
 </script>

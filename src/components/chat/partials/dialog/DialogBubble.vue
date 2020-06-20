@@ -5,7 +5,7 @@
       'chat-dialog__bubble_right': right
     }"
   >
-    Morbi hac eligendi totam? Elementum mi facilis aliquet id turpis ultrices mollitia porttitor praesentium animi ullamco eleifend scelerisque, sapien quam explicabo conubia egestas vehicula!
+    {{ text }}
   </div>
 </template>
 
@@ -16,6 +16,10 @@ export default {
     right: {
       type: Boolean,
       default: false 
+    },
+    text: {
+      type: String,
+      required: true
     }
   }
 }
@@ -28,6 +32,7 @@ export default {
   border-radius: 8px 8px 8px 0px;
   padding: 21px 22px 16px;
   margin: 5px 0;
+  text-align: left;
 }
 .chat-dialog__bubble_right {
   align-self: flex-end;

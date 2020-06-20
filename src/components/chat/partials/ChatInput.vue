@@ -7,6 +7,7 @@
       :disabled="textareaDisabled"
       :rows="lineCount"
       v-model="textareaValue"
+      @keyup.ctrl.enter="sendMessage"
     />
     <div 
       class="chat-input__send-btn"
@@ -15,7 +16,8 @@
       }"
       @click="sendMessage"
     >
-      <SendIcon />
+      <SendIcon v-if="!textareaDisabled" />
+      <Loader v-else />
     </div>
   </div>
 </template>
@@ -24,11 +26,12 @@
 // TODO import from root path
 //import SendIcon from "src/assets/svg/chat-send.svg"
 import SendIcon from "./chat-send-icon.svg"
-
+import Loader from "./Loader.vue"
 export default {
   name: 'ChatInput',
   components: {
-    SendIcon
+    SendIcon,
+    Loader
   },
   data: () => ({
     textareaValue: '',

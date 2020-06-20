@@ -5,16 +5,17 @@
 		</div>
 		<div class="list-container">
 			<div
-				v-for="(item, index) in list"	
+				v-for="(item, index) in chatList"	
 				:key="index"
 				class="list-item"
 				:class="{
-					'list-item_active': 1 === index
+					'list-item_active': index === activeIndex
 				}"
+				@click="setActiveIndex(index, item.id)"
 			> 
-				<span class="list-item__title">Привет!</span>
-				<span class="list-item__date">12 мая 2023</span>
-				<span class="list-item__text">Pharetra, eum ut primis orci labore velit? Ridiculus. Officia mattis pariatur justo ...</span>
+				<span class="list-item__subject">{{ item.subject }}</span>
+				<span class="list-item__date">{{ item.date }}</span>
+				<span class="list-item__text">{{ item.text | trimListItemText }}</span>
 			</div>
 		</div>
 	</div>
@@ -24,8 +25,24 @@
 // TODO Add Fonts
 export default {
 	name: "ChatList",
-	props: {
-		list: Array,
+	filters: {
+		trimListItemText: function(text){
+			return text.substr(0, 40) + ' ...';
+		}
+	},
+	data: () => ({
+		activeIndex: 0,
+	}),
+	computed: {
+		chatList(){
+			return this.$store.state.chatList;
+		}
+	},
+	methods: {
+		setActiveIndex: function(index, id){
+			this.activeIndex = index;
+			this.$store.dispatch('handleChangeConversation', id)
+		}
 	}
 }
 </script>
@@ -36,6 +53,7 @@ export default {
 	width: 300px;
 }
 .list-title{
+	text-align: left;
 	padding: 24px 0 16px 20px;
 	border-bottom:  1px solid #E9EDF2;
 }
@@ -86,10 +104,14 @@ export default {
 	background-color: #FFFFFF;
 	border-left: #398BFF 2px solid;
 }
-.list-item__title{
+.list-item__subject{
 	font-size: 14px;
 	line-height: 20px;
 	color: #35383D;
+	width: 50%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .list-item__date{
 	font-size: 10px;
@@ -98,5 +120,9 @@ export default {
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
 	color: #B7C0C8;
+}
+.list-item__text{
+	width: 100%;
+	text-align: left;
 }
 </style>

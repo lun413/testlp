@@ -1,12 +1,10 @@
 <template>
   <div 
     class="chat-dialog__signature"
-    :class="{
-      'chat-dialog__signature_right': right
-    }"
+    :class="{'chat-dialog__signature_right': right}"
   >
-    <span class="chat-dialog__signature__name">Василий</span>
-    <span class="chat-dialog__signature__date">15.06.2018 13:29</span>
+    <span class="chat-dialog__signature__name">{{ user }}</span>
+    <span class="chat-dialog__signature__date">{{ date }}</span>
   </div>
 </template>
 
@@ -17,6 +15,14 @@ export default {
     right: {
       type: Boolean,
       default: false
+    },
+    user: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: String,
+      required: true
     }
   }
 }

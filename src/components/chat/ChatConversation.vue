@@ -1,18 +1,26 @@
 <template>
   <div class="chat-conversation">
-    <chat-dialog />
+    <chat-dialog 
+      :conversationId="activeId" 
+    />
     <chat-input />
   </div>
 </template>
 <script>
 import chatDialog from "./partials/ChatDialog.vue"
 import chatInput from "./partials/ChatInput.vue"
+import { mapGetters } from "vuex"
 export default {
   name: "ChatConversation",
   components: {
     'chat-dialog': chatDialog,
     'chat-input': chatInput,
   },
+  computed: {
+    ...mapGetters({
+      activeId: 'getActiveConversationId'
+    }),
+  }
 }
 </script>
 
@@ -22,6 +30,6 @@ export default {
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 </style>
